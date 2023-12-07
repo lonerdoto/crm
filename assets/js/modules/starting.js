@@ -223,11 +223,9 @@ const formControl = (form, data) => {
 			createGoods(JSON.stringify(itemJson));
 			e.target.reset();
 			popupClose();
-			await renderItems();
 			await lastPageItems();
 			calculateTotal();
 			itemAdd = false;
-			listImgBtns();
 		}, 3000);
 
 	});

@@ -89,7 +89,7 @@ const renderItems = async (data=null) => {
 };
 
 const lastPageItems = async () => {
-	data = getData();
+	data = await getData();
 	removeItems('tbody .item');
 	itemsPage = data.length / itemsView % 1 === 0 ? parseInt(data.length / itemsView): parseInt(data.length / itemsView) + 1;
 	for (let i = itemsPage * itemsView - itemsView - 1; i < itemsPage * itemsView && data.length > i; i++) {
