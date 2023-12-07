@@ -112,11 +112,16 @@ const formControl = (form, data) => {
 	}
 	checkbox.addEventListener("change", () => {
 		if (checkbox.checked == true) {
-			footerSum.innerHTML = (Number(+(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * Number(+(count.value));
+			let summ = (Number(+(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * Number(+(count.value));
+			if (summ < 0) {
+				summ = 0
+			}
+			footerSum.innerHTML = summ
+
 			discount.removeAttribute("disabled")
 			discount.setAttribute("required", '');
 		} else {
-			footerSum.innerHTML = count.value * price.value;
+			footerSum.innerHTML = Math.floor(count.value * price.value);
 			discount.setAttribute("disabled", true)
 		};
 	});
@@ -147,21 +152,33 @@ const formControl = (form, data) => {
 	listImgBtns();
 
 	discount.addEventListener("input", () => {
-		footerSum.innerHTML = (+(Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+		let summ = (+(Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+		if (summ < 0) {
+			summ = 0
+		}
+		footerSum.innerHTML = summ
 	})
 
 	count.addEventListener("input", () => {
 		if (document.querySelector(".checkbox").checked) {
-			footerSum.innerHTML = ((Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+			let summ = ((Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+			if (summ < 0) {
+				summ = 0
+			}
+			footerSum.innerHTML = summ;
 		} else {
-			footerSum.innerHTML = count.value * price.value;
+			footerSum.innerHTML = Math.floor(count.value * price.value)
 		};
 	});
 	price.addEventListener("input", () => {
 		if (document.querySelector(".checkbox").checked) {
-			footerSum.innerHTML = (+(Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+			let summ = (+(Number(price.value)) - (Number(discount.value) * (1 / 100) * Number(price.value))) * +(Number(count.value));
+			if (summ < 0) {
+				summ = 0
+			}
+			footerSum.innerHTML = summ;
 		} else {
-			footerSum.innerHTML = Number(count.value) * Number(price.value);
+			footerSum.innerHTML = Math.floor(Number(count.value) * Number(price.value));
 		};
 	});
 
@@ -367,7 +384,11 @@ const editItemsFunction = () => {
 			description.value = item.description;
 			count.value = item.count;
 			price.value = item.price;
-			footerSum.innerHTML = (Number(+(item.price)) - (Number(item.discount) * (1 / 100) * Number(item.price))) * + Number(item.count);
+			let summ = (Number(+(item.price)) - (Number(item.discount) * (1 / 100) * Number(item.price))) * + Number(item.count);
+			if (summ < 0) {
+				summ = 0
+			}
+			footerSum.innerHTML = summ;
 			if (popup.classList.contains("active")) {
 				submitBtn.addEventListener("click", async () => {
 					if (price.value == '' || name.value == '' || category.value == '' || parseInt(discount.value) > 99) {
