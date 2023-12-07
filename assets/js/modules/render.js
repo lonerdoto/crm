@@ -24,20 +24,14 @@ const removeItems = (elem) => {
 }
 
 const renderItems = async (data=null) => {
-	
 	if (!data) {
-
 		data = await getData();
 	}
-
-
-
 	itemsViewSel.onchange = async (ev) => {
         itemsView = parseInt(ev.target.options[ev.target.selectedIndex].text);
 		itemsPage = 1;
 		await renderItems();
     }
-
 	lol.innerHTML = `${itemsPage * itemsView - itemsView + 1} - ${itemsPage * itemsView < data.length ? itemsPage * itemsView: data.length} из ${data.length}`
 
 	removeItems('tbody .item');
@@ -48,7 +42,6 @@ const renderItems = async (data=null) => {
 			return;
 		}
 		removeItems('tbody .item');
-
 		itemsPage += 1;
 		for (let i = itemsPage * itemsView - itemsView; i < itemsPage * itemsView && data.length > i; i++) {
 			itemList.append(createItemRow(data[i]));
@@ -60,7 +53,6 @@ const renderItems = async (data=null) => {
 	};
 	
 	leftButton.onclick = async () => {
-
 		let data = await getData();
 		if (itemsPage - 1 <= 0) {
 			return;
@@ -109,5 +101,6 @@ const lastPageItems = async () => {
 	editItemsFunction();
 
 }
+
 export {renderItems, lastPageItems};
 
