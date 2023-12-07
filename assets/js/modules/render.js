@@ -109,3 +109,5 @@ const lastPageItems = async () => {
 	editItemsFunction();
 
 }
+export {renderItems, lastPageItems};
+
