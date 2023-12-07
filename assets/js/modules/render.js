@@ -105,7 +105,7 @@ const lastPageItems = async () => {
 		itemList.append(createItemRow(data[i]));
 		console.log(data[i]);
 	};
-
+	deleteFunction();
+	editItemsFunction();
 
 }
-export {renderItems, lastPageItems};
