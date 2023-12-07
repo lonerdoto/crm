@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CMS</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h2 class="header__title">CMS</h2>
+            <p class="header__sum">Итоговая стоимость: <span class="sum-icon">$</span><span class="sum">0</span></p>
+        </header>
+        <main class="main">
+            <section class="main__table">
+                <div class="main__table-header">
+                    <div class="main__table-header-search">
+                        <div class="main__table-filter-btn">
+                            <img class="main__table-filter-btn-img" src="assets/img/Filter.svg">
+                            <div class="main__table-filter-btn-text">Фильтр</div>
+                        </div>
+                        <div class="main__table-header-search-container">
+                            <img class="table-search-input-img" src="assets/img/Search.svg">
+                            <input class="table-search-input" placeholder="Поиск по наименованию" id="input">
+                        </div>
+                    </div>
+                    <div class="add-product-btn">
+                        <p class="add-product-btn-text">добавить товар</p>
+                    </div>
+                </div>
+                <table class="main__table-body">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>наименование</th>
+                            <th>категория</th>
+                            <th>ед/изм</th>
+                            <th>количество</th>
+                            <th>цена</th>
+                            <th>итог</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody"></tbody>
+                </table>
+                <div class="main__table-footer">
+                    <div class="preloader services__preloader">
+                        <div class="preloader__row">
+                            <div class="preloader__item"></div>
+                            <div class="preloader__item"></div>
+                        </div>
+                    </div>
+
+                    <div class="footer-items">
+                        <div class="page-setting">
+                            <p class="page-setting-text">Показывать на странице:
+                                <select name="items_view" id="items_view">
+                                    <option value="el10">5</option>
+                                    <option value="el10" selected>10</option>
+                                    <option value="el15">15</option>
+                                    <option value="el20">20</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="page-number">
+                            <p class="page-number-text">0-0 из 0</p>
+                        </div>
+                        <div class="page-btns">
+                            <img class="left-btn" src="assets/img/Vector.png">
+                            <img class="right-btn" src="assets/img/Vector-1.png">
+                        </div>
+                    </div>
+                </div>
+                
+
+            </section>
+
+            <div class="pop-up">
+                <img class="pop-up__close" src="assets/img/Group 85.svg">
+                <div class="pop-up-container">
+
+                    <div class="pop-up__header">
+                        <h2 class="pop-up__title">Добавить товар</h2>
+
+                    </div>
+                    <form class="pop-up__main" method="post">
+
+                        <div class="left">
+                            <div class="name-input">
+                                <label>наименование</label>
+                                <textarea class="textarea-name" name="name" oninput="deleteSpace(this)"></textarea>
+                            </div>
+                            <div class="category-input">
+                                <label>категория</label>
+                                <textarea class="textarea-category" name="category"
+                                    oninput="deleteSpace(this)"></textarea>
+                            </div>
+                            <div class="units-input">
+                                <label>единицы измерения</label>
+                                <textarea class="textarea-units" name="units" oninput="deleteSpace(this)"></textarea>
+                            </div>
+                            <div class="discount-input">
+                                <label>discount</label>
+                                <div class="group">
+                                    <input class="checkbox" type="checkbox">
+                                    <textarea disabled class="textarea-discount" name="discount"
+                                        oninput="toNumber(this)"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="image-preview">
+                                <div class="group">
+                                    <img src="" alt="" class="preview-img" accept="image/*">
+                                    <p class="error_msg img_error">Изображение привышает 1 Мб</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="description-input">
+                                <label>описание</label>
+                                <textarea class="textarea-description" name="description"
+                                    oninput="deleteSpace(this)"></textarea>
+                            </div>
+                            <div class="amount-input">
+                                <label>Количество</label>
+                                <textarea class="textarea-amount" name="amount" oninput="toNumber(this)"></textarea>
+                            </div>
+                            <div class="price-input">
+                                <label>цена</label>
+                                <textarea class="textarea-price" name="price" oninput="toNumber(this)"></textarea>
+                            </div>
+
+                            <label class="custom-file-upload">
+                                <input type="file" class="add-img" />
+                                добавить изображение
+                            </label>
+
+                            <button class="footer__btn" type="submit">
+                                добавить товар
+                            </button>
+
+                        </div>
+
+
+                    </form>
+                    <div class="pop-up__header-msg">
+
+                    </div>
+                    <div class="pop-up__footer">
+                        <p class="footer__sum">Итоговая стоимость: <span class="sum-icon">$</span><span
+                                class="footer-sum">0</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pop-up2">
+                <img class="pop-up__close" src="assets/img/Group 85.svg">
+                <div class="pop-up-container">
+
+                    <div class="image-preview">
+                        <div class="group">
+                            <img src="" alt="" class="preview-img" accept="image/*">
+                            <p class="error_msg img_error">Изображение не должно превышать размер 1 МБ</p>
+                        </div>
+                    </div>
+
+                </div>
+        </main>
+
+    </div>
+    <script>
+        const toNumber = e => {
+            const value = e.value;
+            e.value = value.replace(/\D/g, '');
+        };
+        const deleteSpace = e => {
+            if (e.value.charAt(0) == ' ') {
+                e.value = "";
+            }
+        }
+    </script>
+    <script src="assets/js/script.js" type="module" defer></script>
+</body>
+
+</html>
